@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DTD파일 XMl문서의 데이터 구조를 정의한 문서 XMl데이터가 올바른지 검증해준다.-->
+
+<!ELEMENT persons (person*) >
+	<!ELEMENT person (name,age,tel) >
+		<!ELEMENT name (#PCDATA)>
+			<!ATTLIST name nickname CDATA #REQUIRED>
+			
+		<!ELEMENT age (#PCDATA)>
+		<!ELEMENT tel (#PCDATA)>	
+		    <!ATTLIST tel hometel CDATA #REQUIRED>

@@ -1,0 +1,62 @@
+package service;
+
+import java.util.Map;
+
+import dao.ProductDao;
+import vo.ProductVo;
+
+public class ProductServiceImpl implements ProductService {
+
+	ProductDao product_in_dao;
+	ProductDao product_out_dao;
+	ProductDao product_reamian_dao;
+	
+	
+	public ProductDao getProduct_in_dao() {
+		return product_in_dao;
+	}
+
+	public void setProduct_in_dao(ProductDao product_in_dao) {
+		this.product_in_dao = product_in_dao;
+	}
+
+	public ProductDao getProduct_out_dao() {
+		return product_out_dao;
+	}
+
+	public void setProduct_out_dao(ProductDao product_out_dao) {
+		this.product_out_dao = product_out_dao;
+	}
+
+	public ProductDao getProduct_reamian_dao() {
+		return product_reamian_dao;
+	}
+
+	public void setProduct_reamian_dao(ProductDao product_reamian_dao) {
+		this.product_reamian_dao = product_reamian_dao;
+	}
+
+	@Override
+	public Map selectList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insert_in(ProductVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void insert_out(ProductVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
+	
+	
+	
+}

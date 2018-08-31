@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;2018_0706_jQueryTest/WebContent/jQueryExam/0111.html&apos; to &apos;test0111.html&apos;" description="Rename resource &apos;0111.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/jQueryExam/0111.html" name="test0111.html" stamp="1530843680893" updateReferences="true"/>
+</session>

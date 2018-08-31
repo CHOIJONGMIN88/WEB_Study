@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="">
+
+	<select id="dept_list" resultMap="deptResult">
+		SELECT * FROM dept
+	</select>
+	
+	<resultMap id="deptResult" type="vo.DeptVo">
+		<result property="deptno" column="deptno" />
+		<result property="dname" column="dname" />
+		<result property="loc" column="loc" />
+		<collection property="sa_list" 
+			        javaType="java.util.ArrayList" 
+			        ofType="vo.SawonVo"
+
+			        select="sawon_deptno_list2" 
+			        column="{no=deptno}"		
+			        />
+				<!-- no란 변수에 dertno를 넣어준다. -->
+	
+	</resultMap>
+
+	<select id="sawon_deptno_list2" resultMap="sawonResult">
+		SELECT * FROM sawon WHERE deptno=#{ no }
+	</select>
+
+	<resultMap id="sawonResult" type="vo.SawonVo" >
+         <result property="sabun"  column="sabun" />
+         <collection property="go_list"  
+                     select="gogek_godam_list"
+                     column="{bun=sabun}"
+         /> 
+    </resultMap>
+    
+    <select id="gogek_godam_list"  resultType="vo.GogekVo">
+        select * from gogek where godam=#{ bun }
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

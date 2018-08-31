@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+    //검색버튼을 누르면
+    $('#bt_find').click(function(){
+    	//선택된 부서번호
+    	var sajob = $('#sajob').val();
+    	//Ajax요청
+    	$.ajax({
+    		//                                  
+    		//                                  SawonJobListAction<=인코딩주의해서 받아야   
+    		url:'sawon/job_list.do',         // sawon/job_list.do?sajob=부장
+    		data:{'sajob': sajob },          // select * from sawon where sajob=#{sajob} 
+    		success:function(data){
+    			
+    			$('#disp').html(data);
+    		}
+    		
+    	});
+    	
+    });
+	
+});
+
+
+
+
+</script>
+</head>
+<body>
+직위:<select id="sajob">
+            <option value="all">전체보기</option>
+            <option value="부장">부장</option>
+            <option value="과장">과장</option>
+            <option value="대리">대리</option>
+            <option value="사원">사원</option>
+            <option value="알바">알바</option>
+         </select>
+         
+         <input type="button" value="검색" id="bt_find">
+<hr>
+<div id="disp"></div>
+
+
+</body>
+</html>

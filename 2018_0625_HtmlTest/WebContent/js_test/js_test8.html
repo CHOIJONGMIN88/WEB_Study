@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+//form은 배열형식으로 들어간다.
+
+//폼 내부의 입력데이터값을 읽어오기
+
+
+
+var sido_array = ['서울','경기','인천','대전'];
+
+
+function send1(){
+	//form형식은 읽어올때 id가 아닌 name을 읽어온다.
+	var f = document.forms[0];	//개새
+	var id = f.id.value;
+	var pwd = f.pwd.value;
+
+
+	if(id==''){
+		alert('아이디를 입력하세요');
+		f.id.focus();//포커스이동
+		return; 	
+	}
+
+	if(pwd==''){
+		alert('비밀번호를 입력하세요');
+		f.pwd.focus();//포커스이동
+		return; 	
+	}
+
+		//지정된 action으로 데이터 전송 
+		//f.action = 'login.do';		//주소를 login.do로 전송한다.(없으므로 404에러 발생)	
+		f.submit();
+	console.log("call send1");
+}
+
+function send2(){
+	console.log("call send2");
+}
+
+function send3(){
+	console.log("call send3");
+}
+
+
+</script>
+</head>
+<body>
+
+<form action='' method=''>
+
+	<table border ="1">
+	  <tr>
+	  	<th>아이디</th>
+	  	<td> <input name="id" id="id"></td>
+	  </tr>
+	  
+	  <tr>
+	  	<th>비밀번호</th>
+	  	<td> <input type="password" name="pwd"></td>
+	  </tr>
+	
+	
+	
+		<tr>
+			<td colspan="3" align="center">
+				<input type="button" value="폼체크1" onclick="send1();">
+				<input type="button" value="폼체크2" onclick="send2();">
+				<input type="button" value="폼체크3" onclick="send3();">
+			</td>
+		</tr>
+	
+	
+	
+	</table>
+</form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+@charset "UTF-8";
+/*모든 Element의 margin 제거*/
+*{
+	margin:0px;
+	
+}
+
+
+div#main_box{
+	
+	width:800px;
+	height:600px;
+	background-color:#8000ff;
+
+	/*화면 중앙에 배치*/
+		margin:auto;
+}
+
+
+div#header{
+	
+	background-color: #004080;
+	/*부모요소의 크기를 반영 생략시 부모크기*/
+	width:100%;
+	height:100px;
+}	
+
+div#aside{
+	background-color:#ffffcc;
+	/*부모의 30%임*/	
+	width:30%;
+	height:400px;
+	/*블록방식은  배치특성때문에 띄워서 배치해야된다.*/
+	float:left;	
+}
+
+div#content{
+	
+	background-color: #ffcccc;
+	min-height:400px;
+	width:70%;
+	height:400;
+	float:left;
+}
+
+div#footer{
+	
+	background-color: #00ff00;
+	height:100px;
+	/*float속성 제거*/
+	clear:both;	
+}
+
+div#notice{
+	
+	background-color: #00ff00;
+	width:50%;
+	float:left;
+	min-height:200px;
+}
+div#note{
+	background-color: #0080ff;
+	width:50%;
+	float:left;
+	min-height:200px;
+}
+div#site{
+	background-color: #ff8000;
+	width:50%;
+	float:left;
+	min-height:200px;
+}
+div#repple{
+	background-color: #ff0080;
+	width:50%;
+	float:left;
+	min-height:200px;
+}
+
+
+/*class type:*/
+div.box_style{
+	width:46%;
+	height:180px;
+	margin:10px;
+	box-shadow:2px 2px 2px black;
+	float:left;
+	
+	
+	
+}

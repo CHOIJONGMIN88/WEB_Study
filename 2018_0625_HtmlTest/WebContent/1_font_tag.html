@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<style> 
+/* 		p tag의속성은 아래{}내용으로 설정한다  */
+		p{
+		font-size:15pt;
+		color : green; 
+		font-family:휴먼옛체,궁서체,굴림체;
+		font-weight:bold;
+		width: 300px,
+		border:1px soliid red;
+		
+		}
+	
+	/*해당 Tag에 마우스가 올라가면 박스
+	px<--그림자 위치	*/
+	p:hover{
+	box-shadow:2px 2px 2px black
+	}
+	
+	
+	</style>
+
+</head>
+<body>
+
+<hr> <!-- 수평선 긋기 -->
+
+HeadLine Tag :Block요소(크기를 갖는 Tag)
+<hr>
+<hr> <!-- 주석 -->
+<h1 style='background : red'>H1 HeadLine</h1>
+<h2 style='background : green'>H1 HeadLine</h2>
+<h3>H1 HeadLine</h3>
+<h4>H1 HeadLine</h4>
+<h5>H1 HeadLine</h5>
+<h6>H1 HeadLine</h6>
+
+<hr>
+font tag(웹표준에서는 사용을 권하지 않음 )<br>
+웹브라우저마다 크기가 다르게 나오는 경우가 있다.
+inline요소 : 크기를 갖지 못한다. 줄바꿈이 되지 않는다.
+			span tag
+
+<hr>
+
+	<font size ='1'> font size=1</font><br>
+	<font size ='2'> font size=2</font><br>
+	<font size ='3'> font size=3</font><br>
+
+<hr>
+웹표준을 준수하는 방법의 글꼴 크기는 어떻게 해야 하는가?	<br>
+CSS(Cascade Style sheed)를 이용
+1.inline방식<br>
+2.선언적방식<br>
+3.외부파일 include<br> 
+p tag: block요소
+
+<hr>
+
+<p style="font-size: 15pt;">폰트크기가 15크기 </p>
+<p style="font-size: 20pt;">폰트크기가 20크기 </p>
+<p style="font-size: 25pt;">폰트크기가 25크기 </p>
+<p style="font-size: 30pt;">폰트크기가 30크기 </p>
+
+
+<p>
+	오늘은 여기까지 합니다<br>
+	Html나머지 부분은 내일 합니다.
+	모양이나 크기는 CSS의 선언적 방식으로 표현합니다.
+</p>
+
+
+
+
+
+</body>
+</html>

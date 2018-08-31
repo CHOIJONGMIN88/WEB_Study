@@ -1,0 +1,32 @@
+mybatis 환경설정 방법
+
+이클립스 메뉴의 Help - 이클립스 마켓 JAvaorm 베타를 설치한다.
+
+
+프로젝트 네임 내에에서 오른쪽 마우스 ->뉴 -> other->java orm plugin을 통해 config.xml(이파일이 생성될때 db.properties가 생성) mapper.xml 파일을 생성한다.
+(적절한 이름으로 폴더이름을 생성해서 그 내부에 넣어준다.)
+
+
+db.properties 내부에 오라클 데이터 베이스에 맞도록 설정을 해준다.
+
+ex)
+----------------------------------------------------
+#oracle connect info
+jdbc.driverClassName=jdbc.oracle.driver.OracleDriver	<---사용 드라이버 
+jdbc.url=jdbc:oracle:thin:@localhost:1521:xe	<---데이터베이스 오라클 접속 경로
+jdbc.username=test
+jdbc.password=test
+----------------------------------------------------
+
+MyBatisConnector 를 통해 연결 해주어야 하므로 MyBatisConnector 클래스 내부에 있는  xml파일 주소를 경로에 맞게 설정해준다.
+Resources.getResourceAsReader("config/mybatis/mybatis-config.xml");
+ (마이바티스가 해당 xml설정을 가지고 오라클과 연결해준다)
+---------------------------------------------------------------------
+
+mybatis config 파일 내부에 있는 xml파일에서
+<mapper resource="config/mybatis/mapper/dept.xml" />
+config 내부에 있는 데이터를 제어하는 실제 xml 파일을 맵핑해준다.
+
+<properties resource="config/mybatis/db.properties" />
+를 통해서 db설정값을 맵핑스켜준다.
+

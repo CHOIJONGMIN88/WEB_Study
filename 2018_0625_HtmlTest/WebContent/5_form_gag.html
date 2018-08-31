@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type= "text/css">
+
+	label{
+		color:blue;
+	}
+	
+	input[type='submit'],[type='reset']{
+		border: 1px solid red;
+		background-color : #5588aa; /*칼라표현법*/
+		color : pink;
+		}
+	input[type='submit']:hover{
+		color:red;
+	}	
+	
+
+</style>
+
+
+</head>
+<body>
+	<!--  form tag는 서버로 데이터를 전송  
+		  (속성)
+		  action : 데이터를 전달할 객체 or 페이지 (생략되면 자신에게 전달합니다.)
+		  <input types>
+		  type= submit :  지정된 서버로 데이터 전송 
+		  type= reset  :  현재입력된 form data 초기화
+		  type=text    :  일반텍스트(생략하면 text)
+	-->
+	
+	<form action = "register.jsp"> 
+	<label>이름:</label><input name="name"><br>
+	              아이디:<input name="id"><br>
+	              비밀번호:<input type="password" name="pwd"><br>
+	
+	<!-- radio button 사용시 name명은 동일하게 써줘야 그룹으로 인식된다.  -->
+	  성별: <input type="radio" name="sex" value="남자" checked= "checked"> 남자 
+	  	  <input type="radio" name="sex" value="여자"> 여자
+		  <br>
+	<!--  check box :parameter 이름을 동일하게 부여하면 일괄적으로 데이터 처리하기가 수월하다.(배열로 수신) -->
+	취미: <input type="checkbox" name="hobby" value="독서">독서<br>
+	     <input type="checkbox" name="hobby" value="낚시">낚시<br>
+		 <input type="checkbox" name="hobby" value="영화감상">영화<br>
+		 <input type="checkbox" name="hobby" value="게임">게임<br>
+		 
+		 <!--  parameter이름을 동일하게 사용하는 경우  
+		              체크한 항목만 넘어간다.-->
+	
+	친구1:<input name = "friend"><br>	 
+	친구2:<input name = "friend"><br>	 
+	친구3:<input name = "friend"><br>
+	
+	
+	<!-- select : combo box -->
+	혈액형: <select name="blood">
+			<option value="A">A형</option>
+			<option value="B">B형</option>
+			<option value="O">O형</option>
+			<option value="AB">AB형</option>
+			</select>		
+			<br>
+			
+	<!--  textarea : 여러줄 입력 -->
+	자기소개<br>
+	<textarea name="profile" rows ="5" cols = "40"></textarea><br>		
+			
+	
+	<!-- 파일전송 -->
+	사진(첨부화일):<input type="file" name="photo"><br>
+	
+	<!-- 선택적으로 지원되는 기능 -->
+	<hr>
+		생년월일 :<input type ="date" name ="brithday"><br>
+		배경색상:<input type="color" name = "back_color"><br>
+	<hr>
+	
+	
+	
+	
+	<hr>
+	
+	
+	
+	<input type = "submit" value ="전송하기">
+	<input type = "reset"  value ="취소하기">
+
+	</form>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+package com.ic.bbs;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import dao.MemberDao;
+import myconst.MyConstant;
+import vo.MemberVo;
+
+@Controller
+public class MemberController {
+
+	MemberDao member_dao;
+	@Autowired
+	HttpSession session;
+	
+	public MemberDao getMember_dao() {
+		return member_dao;
+	}
+
+	public void setMember_dao(MemberDao member_dao) {
+		this.member_dao = member_dao;
+	}
+	
+	@RequestMapping("/member/login_form.do")
+	public String login_form() {
+		
+		
+		return MyConstant.MemberController.VIEW_PATH + "member_login_form.jsp";
+	}
+	
+	@RequestMapping("/member/login.do")
+	public String login(String id,String pwd,String url,Model model) {
+		
+		
+	    MemberVo user = member_dao.selectOne(id);
+
+		if(user==null) {//id가 틀린경우
+			// Session Tracking : GET방식(Query String)을 이용
+			model.addAttribute("reason","fail_id");
+			return "redirect:login_form.do";
+		}
+		
+		//비밀번호 체크
+		if(user.getPwd().equals(pwd)==false) { //비밀번호가 틀린경우
+			// Session Tracking : GET방식(Query String)을 이용
+		
+			model.addAttribute("reason","fail_pwd");
+			return "redirect:login_form.do";
+		}
+		
+		//정상로그인 되었을경우 처리....
+		//로그인 한 회원정보를 세션에 저장
+		// 각Scope : pageContext,request,session,application
+		//           저장가는한 데이터 =>자바의 모든객체
+		
+		session.setAttribute("user", user);
+		
+	
+		//공백이 같이 들어오기때문에 null이 아니거나 url에 공백을 체크하는 구문을 추가해준다.
+		if(url!=null && !url.isEmpty()) {
+			//response.sendRedirect(url);
+			return "redirect:" + url;
+		}else {
+		
+		//response.sendRedirect("../board/list.do");
+		return "redirect:../board/list.do";
+		}
+		
+		
+		//return "";
+	}
+	
+	
+	
+	
+	
+	
+	
+}

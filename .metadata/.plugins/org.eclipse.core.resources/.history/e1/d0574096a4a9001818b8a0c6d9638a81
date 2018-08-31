@@ -1,0 +1,45 @@
+package service;
+
+import dao.Tes2tDao;
+import dao.TestDao;
+
+public class TestServiceImpl implements TestService {
+
+	TestDao dao1;
+	Test2Dao dao2;
+	
+	
+	
+	public TestDao getDao1() {
+		return dao1;
+	}
+
+
+
+	public void setDao1(TestDao dao1) {
+		this.dao1 = dao1;
+	}
+
+
+
+	public Tes2tDao getDao2() {
+		return dao2;
+	}
+
+
+
+	public void setDao2(Tes2tDao dao2) {
+		this.dao2 = dao2;
+	}
+
+
+
+	@Override
+	public void test() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
+}

@@ -1,0 +1,10 @@
+package com.ic.bbs;
+
+import dao.MemberDao;
+
+public class MemberController {
+
+	MemberDao member_dao;
+	
+	
+}

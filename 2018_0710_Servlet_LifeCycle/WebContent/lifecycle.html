@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+function send_get(f){
+	f.method = 'GET'
+	// f==form 지정된 action으로 form data전송 
+	f.submit();	
+	
+}
+
+function send_post(f){
+	f.method = 'POST'
+	//기본적으로 지정된 값은 GET방식이지만 POST방식은 from tag를 통해서만 보낼수 있다.
+	f.submit();
+}
+
+</script>
+
+</head>
+<body>
+
+	<form action="lifecycle.do">
+		<input name="id" value="hong">
+		<input name="pwd" type="password" value="1234"><br>
+		<input type ="button" value="GET으로 요청하기" onclick="send_get(this.form);">
+		<input type ="button" value="POST로 요청하기"  onclick="send_post(this.from);">
+	
+
+	</form>
+
+
+</body>
+</html>

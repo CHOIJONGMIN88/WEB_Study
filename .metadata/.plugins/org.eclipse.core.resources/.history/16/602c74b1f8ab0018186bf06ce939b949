@@ -1,0 +1,19 @@
+package com.ic.rmiclient;
+
+import dao.BoardDao;
+
+public class TestBoardController {
+
+	BoardDao boardDaoRMI;
+
+	public BoardDao getBoardDaoRMI() {
+		return boardDaoRMI;
+	}
+
+	public void setBoardDaoRMI(BoardDao boardDaoRMI) {
+		this.boardDaoRMI = boardDaoRMI;
+	}
+
+	
+}
+

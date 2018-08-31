@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="">
+
+   <!-- 출생계절별 고객리스트 -->
+   <select id="gogek_season_list" parameterType="String" resultType="vo.GogekVo">
+       select * from
+		(
+		    select 
+		         g.*,
+		         case  floor(to_number(substr(gojumin,3,2))/3)
+		            when 1 then  '봄'
+		            when 2 then  '여름'
+		            when 3 then  '가을'
+		            else '겨울'
+		         end as season
+		    from 
+		       (select * from gogek) g
+		)
+		where season=#{ season }
+    
+   
+   </select>
+  
+  
+  
+  
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

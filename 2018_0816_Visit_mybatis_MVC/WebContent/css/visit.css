@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+
+*{margin: 0;}
+
+#main_box{
+	width:800px;
+	height: 600px;
+	background-color:#ffd5e2;	
+	margin:auto;
+	
+}
+
+#main_box >h1{
+	
+	font-size:20pt;
+	font-weight:bold;
+	color:#ffffff;
+	text-align: center;
+	margin-top: 10px;
+	
+	text-shadow: 1px 1px 1px #ddbbff;
+	margin-bottom:20px;
+}
+
+#main_box >hr{
+	border: none;
+	height: 30px;
+	
+}
+
+#empty_style{
+	text-align: center;
+	color: red;
+	font-size:15pt;
+	font-weight:bold;
+	
+	margin : 50px;
+}
+
+
+.box_style{
+	
+	/*width: 100%;*/
+	box_shadow: 2px 2px 2px black;
+	
+	
+}
+.content_style{
+	min-height:80px;
+	width: 100%;
+	box_shadow: 2px 2px 2px #80ff80;
+	background-color:#c6dbfb;
+	
+}
+
+.name_style{
+	
+	background-color : #8000ff;
+	
+}
+
+.regdate_style{
+	background-color: #ffffbd;
+	
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+
+<style type="text/css">
+#disp{
+width:400px;
+height:400px;
+background-color :black;
+color : white;
+}
+</style>
+</head>
+<script src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	 var reg_dan = /^[2-9]{1}$/;
+	
+	 $("#bt_result").click(function(){
+			
+		 var dan= $("#dan").val(); 
+		 
+		if(reg_dan.test(dan)==false){
+			alert('2~9사이의 숫자만 입력하세요');
+			$('#dan').val(""); //입력값 비우기
+			$('#dan').focus();
+			return;
+		}
+		 
+		var res="";
+		for(var i=1; i<=9; i++){
+			
+			
+			res+= (dan +"x"+ i + "="+dan*i+"<br></font>");
+			
+		
+		}
+
+		
+	$("#disp").html(res); 
+		
+	 
+	 });
+	 
+	
+
+});
+
+
+
+</script>
+
+
+<body>
+
+단: <input id="dan" value="">
+   <input type="button" id="bt_result" value ="확인">
+   <hr>
+   <div id="disp" >
+ 
+ 	<p>여기에 구구단 출력하세요.</p>
+ 
+ 
+  
+   </div>
+
+
+
+
+
+</body>
+</html>

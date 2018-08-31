@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type = "text/javascript">
+
+/*현재 html문서가 로드가 완료되면 호출되는 이벤트*/
+ //선언적방식함수
+/*  function init(){
+	
+	alert('load완료');
+} */
+ 
+ //리터널방식함수
+ var init=function(){};
+ var ball_x,ball_y,ball_radius;
+ var bRight = true;
+ var bUpdown = true;
+ var WIDTH = 600;
+ var HEIGHT = 400;
+ var Change_drection = true;
+ 
+ var ctx;//canvas에 그릴 그리기 contex를 담을 변수 (cf:java Graphics와 유사)
+ var timer;
+ //익명함수 
+ window.onload = function(){
+	
+	 var canvas = document.getElementById("my_canvas");
+	//alert(canvas.getWidth());
+	
+	WIDTH =canvas.width;
+	HEIGHT=canvas.height;
+	
+	 //공의 좌표 및 크기 
+	 ball_x=600/2;
+	 ball_y=400/2;
+	 ball_radius=10;
+	 
+	 //그리기 컨테스트 획득
+	 ctx = canvas.getContext("2d");
+	
+	 ctx.fillStyle = "black";
+	 ctx.fillRect(0,0,600,400);
+	
+	 draw_ball();
+	 
+	 //자바스크립 타이머
+	// setTimeout("process()";,100); //1회만 호출
+	 
+	 timer = setInterval("process();",10); //0.1초 간격으로 지속적으로 호출
+	 
+	 
+ }; 
+ 
+ 
+ function start_timer(){
+	if(timer==null) 
+	timer = setInterval("process();",10); //0.1초 간격으로 지속적으로 호출
+	 
+ }
+ 
+ function stop_timer(){
+	 
+	 clearInterval(timer); //타이머 중지
+	 timer=null;
+	 
+ }
+ 
+// var count=5;
+ function process(){
+	/*  console.log("----");
+	count--;
+	if(count<0)clearInterval(timer);	//타이머 정지!!  */	 
+ 
+ 
+ move_ball();
+ 
+ draw();
+ 
+ }
+ 
+ function move_ball(){
+	 
+	
+ if(Change_drection==true){
+	 if(bUpdown)
+	 ball_y+=5;
+	 else
+	 ball_y-=5;
+	 
+	 if((ball_y - ball_radius)>HEIGHT) //위쪽벽에
+		 bUpdown=false;
+	 
+	 if((ball_y+ball_radius)<0)  //위쪽벽에
+		 bUpdown=true; 
+ 	}
+
+	if(Change_drection==false){ 
+	 if(bRight)
+	 ball_x+=5;	 
+	 else
+	 ball_x-=5;
+	 
+	 if((ball_x + ball_radius)>WIDTH) //오른쪽 벽에 닿았으면
+		 bRight=false;
+	 
+	 if((ball_x-ball_radius)<0)  //왼쪽벽에 닿았으면
+	 	 bRight=true;
+ }
+ }
+ 
+ function draw(){
+	 //이전화면 지우기
+	 ctx.fillStyle = "black";
+	 ctx.fillRect(0,0,600,400);
+	 
+	 
+	 draw_ball();
+	 
+	 
+ }
+ 
+ 
+ 
+ 
+ function draw_ball(){
+	 
+	 var radgrad=ctx.createRadialGradient(ball_x,ball_y,5,ball_x-5,ball_y-5,30);
+	 radgrad.addColorStop(0,'white');
+	 radgrad.addColorStop(1,'black');
+	 ctx.fillStyle=radgrad; 
+	 
+	// ctx.fillStyle = "red"; //그리기(채우기) 속성 x,y,r,startAngle,endAngle,회전방향
+	ctx.beginPath();
+	ctx.arc(ball_x,ball_y,ball_radius,0,Math.PI/180 * 360,true);
+	 ctx.fill();
+ }
+ 
+ 
+ function start_stop(){
+	 
+	 if(timer==null)
+		 start_timer();
+	 else
+		 stop_timer();
+	 
+	 //버튼캡션 변경
+	 document.getElementByID("bt_Start").value=timer==null ? "Start" : "Stop";
+	 
+	 
+ }
+ 
+
+</script>
+
+</head>
+<body>
+
+
+<canvas id="my_canvas" width ="600" height ="400">
+
+</canvas>
+
+<hr>
+<input type="button" value="Start" id="bt_start" onclick="start_stop();"> <br>
+<input type="button" value="direction" onclick ="if(bRight==false)bRight=true;
+											else if(bRight==true)bRight=false;"> 
+
+<input type="button" value="size_up" id="ball_size" onclick="ball_radius+=3"> <br>
+<input type="button" value="size_down" id="ball_size" onclick="ball_radius-=3"> <br>
+
+<input type="button" value="change_vertical" id="change_ver" onclick="
+												if(Change_drection==false)Change_drection=true;
+												else if(Change_drection==true)Change_drection=false;"> <br>
+
+
+
+
+
+</body>
+</html>

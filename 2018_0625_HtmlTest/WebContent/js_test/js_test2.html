@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+/* 자바스크립트 변수
+   	자료형 :string number Date 객체형
+   	문자열표현:"안녕" or '안녕'
+ */
+ 
+ var g_msg='Hi~~';
+ 	
+	msg2='방가워요';
+ /*함수선언*/
+function test()
+{	//함수 내에서 var이 선언되면 지역변수이고
+  	var msg = '안녕하세요';   
+  	// 선언을 하지 않으면 무조건 전역변수이다.
+  	msg2='방가워요';
+  	document.write('test call :' + g_msg +'<br>');
+  	document.write('test call local var:' + msg +'<br>');	
+}
+
+function test2()
+{
+	document.write('test2 call global var: '+g_msg +'<br>');
+	document.write('test2 call ?var:' +msg+'<br>');
+}
+
+//호출
+test();
+test2();
+</script>
+
+
+
+
+</head>
+
+<body>
+
+
+</body>
+</html>

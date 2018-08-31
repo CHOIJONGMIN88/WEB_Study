@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script type="text/javascript">
+
+function send(f){
+	
+	var number1=f.num1.value;
+	var number2=f.num2.value;
+	
+	if(number1==""){
+		alert('첫번째칸 숫자를 입력하세요.');
+		f.num1.focus();
+		return;		
+	}
+	
+	if(number2==""){
+		alert('두번째칸 숫자를 입력하세요.');
+		f.num2.focus();
+		return;		
+	}
+	
+	
+	//전송객체(url) 참고:submit을 통해 html에서 보내지 않고  자바스크립트상에서 전송경로를 다시 정해줘서 보내는 방법
+	f.action ='num_cal.do;' //MemberRegisterAction Servlet
+	//지정된 action form data 전송 
+	f.submit();
+	
+
+}
+
+
+
+
+
+
+
+</script>
+
+<body>
+
+<form>
+
+수1:<input type="text" name="num1" id=num1><br>
+
+수2:<input type="text" name="num2" id=num2><br>
+
+<input type="button" value="전송해줘" onclick ="send(this.form);">
+
+
+
+</form>
+
+
+</body>
+</html>

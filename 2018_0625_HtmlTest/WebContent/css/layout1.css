@@ -1,0 +1,47 @@
+@charset "UTF-8";
+/*모든 Element의 margin 제거*/
+*{
+	margin:0px;
+	
+}
+
+div#main_box{
+	
+	width:1000px;
+	height:800px;
+	background-color:#8000ff;
+
+	
+	/*화면 중앙에 배치*/
+		margin:auto;
+}
+
+
+div#header{
+	
+	background-color: #004080;
+	/*부모요소의 크기를 반영 생략시 부모크기*/
+	width:100%;
+	height:100px;
+}	
+
+
+div#content{
+	
+	background-color: gold;
+	min-height:400px;
+	height:auto;
+}
+
+div#aside{
+	
+	background-color: pink;
+	min-height:300px;
+	height:auto;
+}
+
+div#footer{
+	
+	background-color: red;
+	height:100px;
+}

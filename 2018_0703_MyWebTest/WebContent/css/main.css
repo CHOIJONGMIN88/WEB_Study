@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+/* 모든요소의 마진을 제거 */
+*{ margin : 0; }
+
+#main_box{
+	
+	width:800px;
+	height:600px;
+	margin:auto; /*화면 중앙에 배치*/
+	background-color:magenta;
+}
+
+#header{
+	width : 100%;
+	height: 120px;
+	background-color:yellow;
+}
+
+#aside{
+	width:  30%;
+	height: 380px;
+	float: left;
+	background-color:green;
+}
+
+#content{
+	width:70%;
+	min-height:380px;
+	height:auto;
+	float: left;
+	background-color:white;
+}
+
+#footer{
+	
+	width:100%
+	height : 100px;
+	clear:both; /* float 속성해제 */
+	blackground-color:red;
+}
+
+#footer_content a{
+	text-decoration : none;
+	margin : 10px;
+	font-family: 휴먼옜체;
+	font-size:15px;
+	color: puple;
+	
+	}
+
+#footer_content a:hover{
+	color:yellow;
+	
+	}
+/* 제목 */
+
+h1#title{
+	
+	text-align:center;
+	margin-top:10px;
+	font-size:20pt;
+	text-shadow:2px 2px 2px black;
+	color:red;
+	
+}
+
+
+
+}

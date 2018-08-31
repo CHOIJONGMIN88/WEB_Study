@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<!--  외부작성된 js파일을 연결하는 방법  -->
+<script type="text/javascript" src =../css/js/reg_exp.js>
+
+</script>
+
+
+<script type="text/javascript">
+function send(){
+	//입력된 3개의 값을 읽어오기
+	//alert('call send');
+	var tel = document.getElementById("tel").value;
+	var email = document.getElementById("email").value;
+	var jumin = document.getElementById("jumin").value;
+	
+	/* //정규식 
+	var reg_tel = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+	var reg_email = /^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{1,5}$/;
+	var reg_jumin = /\d{6} \- [1-4]\d{6}/; */
+
+	
+	if(reg_tel.test(tel)==false){
+		alert('전화번호를 형식에 맞게 입력하세요');
+		document.getElementById("tel").value='';
+		document.getElementById("tel").focus();
+		return;		
+	}
+
+	if(reg_email.test(email)==false){
+		alert('이메일을 형식에 맞게 입력하세요');
+		document.getElementById("email").value='';
+		document.getElementById("email").focus();
+		return;		
+		
+	}
+	
+	if(reg_jumin.test(jumin)==false){
+		
+		alert('주민번호 형식에 맞게 입력하세요');
+		document.getElementById("jumin").value='';
+		document.getElementById("jumin").focus();
+		return;		
+				
+	}
+	
+}
+
+</script>
+
+<body>
+
+전화번호:<input id="tel" placeholder="xxx-xxxx-xxxx" value= 010-1234-4567><br>
+이메일: <input id="email"placeholder="xxxxx@asdas.net" value= 010-1234-4567 ><br>
+주민번호:<input id="jumin"><br>
+
+<input type="button" value="전송" onclick="send()">
+
+
+</body>
+</html>

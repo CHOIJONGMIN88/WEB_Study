@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript" >
+
+function send(form){
+	
+	form.action ='JuminAction.do;' //MemberRegisterAction Servlet
+	//지정된 action form data 전송 
+	form.submit();	
+	
+}
+</script>
+
+<form>
+
+	<label>주민번호</label>
+	 <input type="text" name="jumin" value="880410-1234567" size="20">
+	 <input type="button" value="전송해보리기" onclick=send(this.form);>
+	 
+	 
+	 
+	 
+	 
+
+</form>
+</body>
+</html>

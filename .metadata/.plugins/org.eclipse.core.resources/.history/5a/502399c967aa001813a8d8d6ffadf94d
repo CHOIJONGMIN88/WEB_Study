@@ -1,0 +1,37 @@
+package service;
+
+import java.util.Map;
+
+import vo.ProductVo;
+
+public class ProductServiceImpl implements ProductService {
+
+	ProductDao product_in;
+	ProductDao product_out;
+	ProductDao product_reamian;
+	
+	
+	@Override
+	public Map selectList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insert_in(ProductVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void insert_out(ProductVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
+	
+	
+	
+}

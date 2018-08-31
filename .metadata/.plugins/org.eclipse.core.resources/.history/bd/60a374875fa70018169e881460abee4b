@@ -1,0 +1,14 @@
+package vo;
+
+import org.springframework.web.multipart.MultipartFile;
+
+public class PhotoVo2 {
+
+	String title;
+	MultipartFile [] photo;	//업로드된 화일이 복수개일경우 배열로 받는다.
+	
+	//MultipartFile photo1
+	//MultipartFile photo2		해당방식은 성립할수 없다. 스프링은 배열방식으로 받아야한다.
+	
+	
+}

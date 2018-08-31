@@ -1,0 +1,8 @@
+1531879322421	Move 'context.xml' to 'META-INF'
+1531879335293	Delete element
+1531879739889	Rename type 'DBservice'
+1531896019612	Rename resource 'visit_insert_form.jsp'
+1531896046025	Rename resource 'insert_form.jsp'
+1531966711216	Copy file
+1532000128104	Move file
+1532000166136	Move 'visit_modify_form.jsp' to 'visit'

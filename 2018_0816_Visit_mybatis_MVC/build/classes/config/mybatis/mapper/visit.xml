@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="visit">
+
+
+ 	   <!-- 전체검색 -->
+    <select id="visit_list" resultType="visit">
+    	select * from visit order by idx desc	
+    </select>
+    
+    <!-- 조건별검색 -->
+    
+    <!-- trim의 경우 원하는 문자열을 제거하는 태그이다.
+    
+    	select * from visit  다음에  
+    	
+    	<trim> 태그 내부에 있는 <if> 태그의 값의 조건이 만족할 경우 해당 sql 문이 실행 된다. 
+    	
+    	기본동작은 trim 태그 내부에 있는 if 조건문이 만족할 경우 if태그 내부에 존재하는 sql문 앞에 where이 붙어서 실행하게
+    	된다. (ex)select * from visit [where] 
+    	그러나 where 문 다음에 곧바로 or문이 위치하게 되면 prefixOverrides=or 태그에 의해서 or이 제거되어
+    	sql문에 오류가 없도록 구문을 완성시킨다.(경우에 따라 sql 문이 다르게 적용되는 동적 sql문이기 때문에 경우의 수가4개가 존재한다)
+  
+     -->
+    
+    
+    <select id="visit_condition_list"  parameterType="vo.VisitVo" resultType="visit">
+    	select * from visit 
+    	<trim prefix="where"  prefixOverrides="or">
+    		<if test="name!=null">
+    			name like '%' || #{ name } || '%'
+    		</if>
+    		<if test="content!=null">
+    		    or content like '%' || #{ content } || '%'
+    		</if>
+    	</trim>
+    	order by idx desc	
+    </select>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	<!--  전체 게시물 수  가져오기-->
+ 	<select id="visit_count" resultType="int">
+ 		
+ 		select count(*) from visit
+ 	</select>
+ 	
+ 	<!--  게시물 1건 얻어오기                                 					   ↓해당 visit ==vo.VisitVo와 같은뜻으로 sql_map_config에 alias타입으로 지정되어있다-->
+ 	<select id="visit_one" parameterType="int" resultType="visit">
+ 		select *  from visit where idx=#{idx}
+ 	</select> 	
+ 	
+ 	<!--  방명록 쓰기
+ 		  parameter:객체(VisitVo)
+ 		  mybatis 변수명은 #{객체의 속성명} 
+ 	 -->
+ 
+	<insert id="visit_insert" parameterType="vo.VisitVo">
+	
+	insert into visit values(seq_visit_idx.nextVal,#{name},#{content},#{pwd},#{ip},sysdate)
+	
+	</insert>
+	
+
+	<delete id="visit_delete" parameterType="int">
+	delete from visit where idx=#{idx}
+	</delete>
+
+   <update id="visit_update" parameterType="vo.VisitVo">
+	
+	 update visit set name=#{name},
+	 				  content=#{content},
+	 				  pwd=#{pwd},
+	 				  ip=#{ip},
+	 				  regdate=sysdate where idx=#{idx}
+	
+	
+	</update>
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

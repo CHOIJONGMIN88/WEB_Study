@@ -1,0 +1,20 @@
+package advice;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.Signature;
+
+public class Advice {
+	
+	long start,end;
+	public void before(JoinPoint jp){
+		Signature s =  jp.getSignature();
+		start= 
+		System.out.println("----before:" + s);
+	}
+	
+	public void after(JoinPoint jp){
+		Signature s =  jp.getSignature();
+		
+		System.out.println("----after:" + s.toLongString());
+	}
+}

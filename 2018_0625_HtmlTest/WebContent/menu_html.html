@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--  선언적 방식의 CSS사용 -->
+<!--  text/css id임 -->
+<style type = "text/css">
+	/*제어대상 지정:jQuery에서는 selector 
+	 id : id명 
+	*/
+	
+	ul#h_menu{
+		list-style: none;
+	
+	}
+	/* 하위요소표현시 공백 
+	공백 : 하위의 모든요소
+	>  : 지정된 아래요소 
+	*/
+	ul#h_menu > li{
+		display:inline-block;	
+		background-color : pink;
+	
+	}
+	
+	ul#h_menu li a{
+	/* a:inline요소(크기지정 못함)*/
+	display:inline-block;/* 크기설정을 바꾸기 위해서 inline요소를 block 요소로 변경함*/	
+	border : 1px solid yellow;
+	width :150px;
+	text-align: center;
+	text-decoration : none;
+	color : green;
+	}
+	/* <a>에 마우스가 올라가면 */
+	ul#h_menu li a:hover{
+	border: 1px solid red;
+	font-weight : bold;
+	color:blue;
+	
+	}
+	
+	
+	
+
+	ul#v_menu{
+		list-style: none ;
+	
+	}
+
+	ul#v_menu li{
+		
+	margin: 30px; /*4방향이 모두 적용됨*/
+	border : 2px solid red;
+	width :200px;
+	text-align: left;
+	text-decoration : overline;
+	color : yellow;
+
+	}
+	
+	ul#v_menu li a:hover{
+	
+	border: 1px solid red;
+	font-weight : bold;
+	
+	color:green;
+	
+	}
+	
+</style>
+
+
+</head>
+<body>
+
+<hr>
+수평메뉴
+<hr>
+	<ul id="h_menu">
+		<li><a href="https://www.naver.com">네이버</a></li>
+		<li><a href="http://www.daum.net">다음</a></li>
+		<li><a href="http://google.com">구글</a></li>
+	</ul>
+<hr>
+수직메뉴
+<hr>
+	<ul id="v_menu">
+		<li>호우<a href="1_font_tag.html">폰트관련태그</a></li>
+		<li><a href="2_list_tag.html">리스트관련태그</a></li>
+		<li><a href="index.html">메인화면</a></li>
+	</ul>
+
+
+</body>
+</html>

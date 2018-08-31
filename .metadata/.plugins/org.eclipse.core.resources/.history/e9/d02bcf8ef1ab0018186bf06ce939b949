@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	
+<!-- RMI Service를 수행하는 객체 생성 -->
+<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+	<property name="serviceName"><value>Calc</value></property>
+	<property name="service"><ref bean="calc"/></property>
+	<property name="serviceInterface"><value>dao.Calc</value></property>
+	<!-- defaults to 1099 -->
+	<property name="registryPort"><value>1199</value></property>
+</bean>
+	
+		
+</beans>

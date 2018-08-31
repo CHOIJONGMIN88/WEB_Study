@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 스프링이 객체를 생성할 수 있도록 등록  -->
+	<!-- web.xml 내부의ContextLoaderListener가 root-context.xml파일 읽어서 객체를 생성한다.-->
+	
+	<!--프로그램 시작시 xml을 읽으면서 객체를 생성한다. -->
+	<!-- PersonVo p1 = new PersonVo() -->
+	
+	<!-- 기본적으로 객체 생성은 singleton방식으로 생성 된다.(처음 스프링이 실행될시 생성) -->
+	<!-- 그러나 prototype의 경우 요청할 때마다 객체를 생선한다.(타입만 저장 후 요청시 생성 -->
+	
+	<bean id="p1" class="vo.PersonVo" scope="prototype">
+	<constructor-arg value="s일길동"/>
+	<constructor-arg value="30"/>
+	<constructor-arg value="s01101101101"/>
+	<!-- 생성자가 있는 경우 constructor-arg value를 통해 파라미터를 전달한다. -->
+	</bean>
+	
+	<!-- Setter Injection : setter를 이용해서 외부객체 주입하는 방법 -->
+	<bean id="p2" class="vo.PersonVo">
+		<property name ="name" value="s이길동"></property>
+		<!-- p2.setName과 같다. 해당 방법을 태그로 처리하는것이다. -->
+		<property name ="age" value="33"></property>
+		<property name ="tel" value="s010-222-1234"></property>
+	
+	</bean>
+	
+	<!-- bean을 이용해서 자바의 모든 객체를 생성 할 수 있다. -->
+	<bean id="nameBean" class="java.lang.String">
+		<constructor-arg value="s박길동"/>
+	<!-- String nameBean = new String("박길동") -->	
+	</bean>
+	
+	<bean id="ageBean" class="java.lang.Integer">
+		<constructor-arg value="33"/>
+	</bean>
+	
+	<bean id="telBean" class="java.lang.String">
+		<constructor-arg value="s010-333-3456"/>
+	</bean>
+	
+	
+	<bean id="p3" class="vo.PersonVo">	
+		<property name="name" ref="nameBean"/>
+		<property name="age"  ref="ageBean"/>
+		<property name="tel"  ref="telBean"/>
+	
+	</bean>
+	
+	
+	
+	
+		
+</beans>

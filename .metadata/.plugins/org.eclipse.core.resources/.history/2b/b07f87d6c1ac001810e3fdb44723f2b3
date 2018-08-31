@@ -1,0 +1,5 @@
+package com.ic.autowire;
+
+public class TestController {
+
+}

@@ -1,0 +1,29 @@
+package service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import dao.TestDao;
+
+@Service("test_service")
+public class TestServiceImpl implements TestService {
+
+	TestDao test_dao;
+	
+	public TestServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public List selectlist() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- MyMap객체 생성 -->
+	<!-- MyMap myMapBean = new MyMap() -->
+	<bean id="myMapBean"  class="myutil.MyMap">
+		<property name="map"><!--  myMapBean.setMap(map) -->
+			<!-- Map map = new HashMap() -->
+			<map>
+			    <!--  map.put("driver","oracle.jdbc.driver.OracleDriver") -->
+				<entry key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<entry key="url"    value="jdbc:oracle:thin:@localhost:1521:xe"/>
+				<entry key="user"   value="test"/>
+				<entry key="pwd"    value="test"/>
+			</map>
+		</property>
+	</bean>
+		
+</beans>

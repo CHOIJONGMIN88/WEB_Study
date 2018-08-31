@@ -1,0 +1,14 @@
+package vo;
+
+
+
+public class ProductVo {
+
+	 int idx;
+	 String name;
+	 int cnt;
+	 String regdate;
+
+	
+	
+}

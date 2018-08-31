@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+    //검색버튼을 누르면
+    $('#bt_find').click(function(){
+    	//선택된 부서번호
+    	var deptno = $('#deptno').val();
+    	//Ajax요청
+    	$.ajax({
+    		url:'sawon/list.do',         // sawon/list.do?deptno=10
+    		data:{'deptno': deptno },
+    		success:function(data){
+    			
+    			$('#disp').html(data);
+    		}
+    		
+    	});
+    	
+    });
+	
+});
+
+
+
+
+</script>
+</head>
+<body>
+부서번호:<select id="deptno">
+            <option value="0">전체보기</option>
+            <option value="10">10번부서</option>
+            <option value="20">20번부서</option>
+            <option value="30">30번부서</option>
+            <option value="40">40번부서</option>
+         </select>
+         
+         <input type="button" value="검색" id="bt_find">
+<hr>
+<div id="disp"></div>
+
+
+</body>
+</html>

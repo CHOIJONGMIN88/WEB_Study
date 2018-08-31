@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="js/jquery-1.10.2.js"></script>
+
+<!--  widonw.onload = function(){} -->
+<!-- jQuery(selector).이벤트처리함수 jQuery(document).ready는 상징적인 의미  -->
+<!-- jQuery(document).ready(function(){}); 	 -->
+<!-- jQuery = $ 와 같다. jQuery를 항상 써주기 힘들기때문에!!! $로 바꿔서 사용한다.  -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+ alert('로드완료');
+ //$("#btn1") == document.getElementById("btn1") 과 같은 의미이다.		
+ $("#btn1").click(function(){ //id가 btn1이 클릭되면 다음 함수를 호출한다.
+	 
+	alert("bt1클릭됬다");
+	 
+ }); 
+ 
+
+});
+</script>
+
+</head>
+<body>
+
+
+<input id="btn1" type="button" value="버튼">
+
+
+</body>
+</html>

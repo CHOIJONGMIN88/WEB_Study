@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--  이름이 긴 패키지명을  간소화해서 사용할때 정의한다.
+	
+	<typeAliases>
+								패키지 네임                                  편하게 사용
+		<typeAlias type=" very long package name" alias="name"/>
+		
+	</typeAliases>
+
+	-->
+	<typeAliases>
+    	<typeAlias type="vo.VisitVo" alias="visit"/>
+    </typeAliases>
+	
+	<environments default="">
+		<environment id="">
+			<transactionManager type="JDBC" />
+			<dataSource type="JNDI">
+				<property name="data_source" 
+				value="java:comp/env/jdbc/oracle_test"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	
+	<mappers>
+		<mapper resource="config/mybatis/mapper/visit.xml" />
+	</mappers>
+</configuration>

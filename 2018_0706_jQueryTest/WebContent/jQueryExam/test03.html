@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	var reg_num = /^[0-9]{1,3}$/; //자바스크립트 정규식
+	
+	$(document).ready(function() {
+		$("#bt_plus").click(function() {
+			var n1 = $("#num1").val();
+			var n2 = $("#num2").val();
+			
+			if(reg_num.test(n1)==false){
+				alert('숫자만 입력하세요');
+				return;
+			}			
+			if(reg_num.test(n2)==false){
+				alert('숫자만 입력하세요');
+				return;
+			}
+			// 문자 => 숫자 변환
+			var num1 = Number(n1);//parseInt(n1);
+			var num2 = Number(n2);//parseInt(n2);
+			var result = num1 + num2;
+			
+			$("#result").val(result);
+		});
+		
+		$("#bt_minus").click(function() {
+			var n1 = $("#num1").val();
+			var n2 = $("#num2").val();
+			
+			if(reg_num.test(n1)==false){
+				alert('숫자만 입력하세요');
+				return;
+			}			
+			if(reg_num.test(n2)==false){
+				alert('숫자만 입력하세요');
+				return;
+			}
+			// 문자 => 숫자 변환
+			var num1 = Number(n1);//parseInt(n1);
+			var num2 = Number(n2);//parseInt(n2);
+			var result = num1 - num2;
+			
+			$("#result").val(result);
+		});
+		
+	
+		$("#bt_devide").click(function() {
+			var n1 = $("#num1").val();
+			var n2 = $("#num2").val();
+			
+			if(reg_num.test(n1)==false){
+				alert('숫자만 입력하세요');
+				return;
+			}			
+			if(reg_num.test(n2)==false){
+				alert('숫자만 입력하세요');
+				return;
+			}
+			// 문자 => 숫자 변환
+			var num1 = Number(n1);//parseInt(n1);
+			var num2 = Number(n2);//parseInt(n2);
+			var result = int(num1/num2);	//패스인트 귀차나서 안함 ㅋ
+			
+			$("#result").val(result);
+		});
+	
+		$("#bt_multiplex").click(function() {
+			var n1 = $("#num1").val();
+			var n2 = $("#num2").val();
+			
+			if(reg_num.test(n1)==false){
+				alert('숫자만 입력하세요');
+				return;
+			}			
+			if(reg_num.test(n2)==false){
+				alert('숫자만 입력하세요');
+				return;
+			}
+			// 문자 => 숫자 변환
+			var num1 = Number(n1);//parseInt(n1);
+			var num2 = Number(n2);//parseInt(n2);
+			var result = num1 * num2;
+			
+			$("#result").val(result);
+		});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	});
+	
+	/* $(document).ready(function(){
+			//동적으로 Event처리 
+			$("#plus").bind('click',function(){
+				alert('ddd');
+				$(this).unbind('click');//이벤트 제거
+			});
+	}); */
+	
+	
+</script>
+</head>
+<body>
+	<input type="text" id="num1" size="5" /> +
+	<input type="text" id="num2" size="5" /> =
+	<input type="text" id="result" size="7" />
+	<br>
+	<input type="button" id="bt_plus" value="합" />
+	<input type="button" id="bt_minus" value="빼기" />
+	<input type="button" id="bt_devide" value="나누기" />
+	<input type="button" id="bt_multiplex" value="곱하기" />
+	
+	
+	
+	
+</body>
+</html>

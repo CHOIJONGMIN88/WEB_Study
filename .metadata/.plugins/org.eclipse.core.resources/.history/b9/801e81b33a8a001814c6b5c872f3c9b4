@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+
+*{margin: 0;}
+
+#main_box{
+	width:800px;
+	height: 600px;
+	background-color:red;	
+	margin:auto;
+	
+}

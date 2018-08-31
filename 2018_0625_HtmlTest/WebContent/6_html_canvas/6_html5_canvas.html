@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/* 현재 html문서가 로드가 완료되면 호출되는 이벤트 */
+ 
+//선언적방식함수 
+/* function init(){
+	alert('load완료');
+} */ 
+
+//JSON객체을 이용한 익명함수
+/* 
+var myfunc = { 
+		 kor:function(){ alert('안녕하세요');} ,
+         eng:function(){ alert('Hi! Everyone!!'); }
+};
+myfunc.kor();
+myfunc.eng();
+
+ */
+//리터럴방식함수
+// var init = function(){ };
+
+//클래스 설계
+//벽돌깨기 블럭설계
+
+function Block(x,y,w,h,show,color)
+{
+	//멤버변수
+	this.x = x;
+	this.y = y;
+	this.w = w;
+	this.h = h;
+	this.show = show;
+	this.color= color;
+	//멤버함수 작성
+	this.sub = function(){
+		alert('call sub');
+	}
+}
+
+//Block 클래스의 멤버함수 등록: prototype방식으로 처리
+//Block.prototype.call = function(){  alert('call:' + this.color) ; }
+//var block = new Block(0,0,1,2,true,"red");
+//block.sub();
+//block.call();
+
+
+
+
+//블럭배열생성
+var block_array = new Array();
+var block_w=100;
+var block_h=40;
+var WIDTH =  600;
+var HEIGHT = 400;
+
+  var bar= new Block((WIDTH/2)-30,300, 60, 15 , true,"green");  
+ 
+function init_block(){
+	
+	
+	var colors = [ "red","green","blue","yellow","cyan","magenta","pink" ];
+	var index = 0;
+	for(var i=0;i<4;i++){ //행좌표(y)
+		
+		var block_arr = new Array();//1차원배열
+		
+		for(var k=0;k<6;k++){ //열좌표(x)
+			
+			var block = new Block(k*block_w,i*block_h,block_w,block_h,true,colors[index]);
+		    
+		    //if((i+k)%2==0)block.show=false;
+		    
+		    block_arr[k]  = block;
+		    
+		    index++;
+		    if(index>6)index=0;
+		}
+		
+		//2차원배열 설정
+		block_array[i] = block_arr;//1차원배열을 다른배열에 넣으면(2차원)
+		
+		
+	}
+	
+}
+
+
+/*마우스 이벤트 처리 */
+ 
+ //마우스가 클릭 되면
+ 
+window.onmousedown = function(event){
+	//클릭된 좌표
+	var x = event.offsetX;
+	var y = event.offsetY;	
+
+	/* //console.log("("+x+","+y+")");
+	//클릭한 블럭의 행 열 정보
+	var row = Math.floor(y/block_h);
+	var col = Math.floor(x/block_w);
+	//console.log(row);
+	var block = block_array[row][col];
+	block.show = false; */
+
+};
+
+window.onmousemove = function(event){
+	//마우스가 움직일때마다 이벤트 발생
+	var x = event.offsetX;
+//	console.log("("+x+","+y+")");
+	bar.x=x;
+	if(x+60>WIDTH)bar.x=WIDTH-60
+
+};
+
+
+
+
+
+
+var ball_x,ball_y,ball_radius;
+var bRight = true;//이동방향
+var bDown = true;
+
+//화면크기
+
+
+var ctx;//cavas에 그릴 그리기 context담을 변수(cf: java Graphics와 유사)
+var timer=null;
+//익명함수 
+window.onload =function(){
+	//alert('load완료');
+	//  id=my_canvas인 컨트롤 정보 획득
+	var canvas = document.getElementById("my_canvas");
+	//alert(canvas.width);
+	WIDTH  = canvas.width;
+	HEIGHT = canvas.height;
+	
+	//공의 좌표 및 크기
+	ball_x = 600/2;
+	ball_y = 400/2;
+	ball_radius = 15;
+	//그리기 컨텍스트 획득
+	ctx = canvas.getContext("2d");
+	
+	ctx.fillStyle = "black";
+	ctx.fillRect(0,0,600,400);
+	
+	//draw_ball();
+	
+	init_block();//벽돌초기화
+	
+} ;
+
+
+
+
+function start_timer(){
+	//자바스크립 타이머
+	//setTimeout("process();",100); //1회만 호출
+	if(timer==null)
+	   timer = setInterval("process();",10);  //지속적으로 호출
+}
+
+function stop_timer(){
+	clearInterval(timer);//타이머 중지
+	timer=null;
+}
+
+
+var count=5;
+function process(){
+	//처리코드
+	/* console.log("---");
+	count--;
+	if(count<0)
+		clearInterval(timer);//타이머 중지 */
+	move_ball();//공의 위치변경
+	
+	//충돌체크
+	collision_ball_and_block();
+	
+	draw();//다시 그려라	
+		
+}
+
+function collision_ball_and_block(){
+	
+	//공이 블럭범위 아래 있으면 충돌체크 하지 말것
+	
+		if((bar.x<ball_x)&&(ball_x<bar.x+60)&&(ball_y+ball_radius)>300){
+	
+		bDown=false;
+		
+		console.log("("+bar.x+","+bar.y+")");
+		console.log("("+ball_x+","+ball_y+")");
+		
+		}
+					
+			
+			
+	
+	
+	if((ball_y-ball_radius) >= (block_array.length*block_h))return;
+	
+	
+	//공이 윗쪽으로 이동시 
+if(bDown==false)	
+	collision_ball_top();
+if(bDown==true)		
+	collision_ball_bottom();
+if(bRight==true)
+	collision_ball_right();
+if(bRight==false)
+	collision_ball_left();
+	
+}
+
+
+
+
+function collision_ball_right(){
+	//공의 충돌위치 구하기
+	var x = ball_x+ball_radius;
+	var y = ball_y;
+	
+	//행/열 구하기 
+	var row = Math.floor(y/block_h);
+	var col = Math.floor(x/block_w);
+	
+	var rows = block_array.length;
+	var cols = block_array[0].length;
+	
+	//예외방지를 위한 세이프코드
+	if(row<0 || row >=rows) return;
+	if(col<0 || col >=cols) return;
+	
+	var block =block_array[row][col];
+	//이미 깨진 블럭인경우 
+	if(block.show==false)return;
+	//블럭 깨기 
+	block.show=false;
+	
+	//공의 방향을 아래로 전환 
+	bRight=false;
+	
+}
+
+function collision_ball_left(){
+	//공의 충돌위치 구하기
+	var x = ball_x;
+	var y = ball_y-ball_radius;
+	
+	//행/열 구하기 
+	var row = Math.floor(y/block_h);
+	var col = Math.floor(x/block_w);
+	
+	var rows = block_array.length;
+	var cols = block_array[0].length;
+	
+	//예외방지를 위한 세이프코드
+	if(row<0 || row >=rows) return;
+	if(col<0 || col >=cols) return;
+	
+	var block =block_array[row][col];
+	//이미 깨진 블럭인경우 
+	if(block.show==false)return;
+	//블럭 깨기 
+	block.show=false;
+	
+	//공의 방향을 아래로 전환 
+	bRight=true;
+	
+}
+
+
+function collision_ball_bottom(){
+	//공의 충돌위치 구하기
+	var x = ball_x;
+	var y = ball_y+ball_radius;
+	
+	//행/열 구하기 
+	var row = Math.floor(y/block_h);
+	var col = Math.floor(x/block_w);
+	
+	var rows = block_array.length;
+	var cols = block_array[0].length;
+	
+	//예외방지를 위한 세이프코드
+	if(row<0 || row >=rows) return;
+	if(col<0 || col >=cols) return;
+	
+	var block =block_array[row][col];
+	//이미 깨진 블럭인경우 
+	if(block.show==false)return;
+	//블럭 깨기 
+	block.show=false;
+	
+	//공의 방향을 아래로 전환 
+	bDown=false;
+	
+}
+
+
+
+function collision_ball_top(){
+	//공의 충돌위치 구하기
+	var x = ball_x;
+	var y = ball_y-ball_radius;
+	
+	//행/열 구하기 
+	var row = Math.floor(y/block_h);
+	var col = Math.floor(x/block_w);
+	
+	var rows = block_array.length;
+	var cols = block_array[0].length;
+	
+	//예외방지를 위한 세이프코드
+	if(row<0 || row >=rows) return;
+	if(col<0 || col >=cols) return;
+	
+	var block =block_array[row][col];
+	//이미 깨진 블럭인경우 
+	if(block.show==false)return;
+	//블럭 깨기 
+	block.show=false;
+	
+	//공의 방향을 아래로 전환 
+	bDown=true;
+	
+}
+
+function move_ball(){
+	
+	//좌우이동
+	if(bRight)
+	    ball_x = ball_x + 2;
+	else
+		ball_x = ball_x - 2;
+	
+	if( (ball_x + ball_radius) > WIDTH ) //오른쪽벽에 닿았으면
+		bRight = false;
+	
+	if((ball_x - ball_radius) <0 ) //왼쪽벽에 닿았으면
+	    bRight = true;
+	
+	//상하이동
+	if(bDown)
+		ball_y = ball_y + 2;
+	else
+		ball_y = ball_y - 2;
+	
+	//윗쪽벽 충돌
+	if( (ball_y-ball_radius) < 0 )
+		bDown=true;
+	
+	//아랫쪽벽 충돌
+	if( (ball_y+ball_radius) > HEIGHT)
+		bDown=false;
+	
+	
+}
+
+function draw(){
+	
+	//이전화면 지우기
+	ctx.fillStyle = "black";
+	ctx.fillRect(0,0,600,400);
+	
+	//bar 그리기
+	
+	draw_bar();
+	//블럭그리기
+	draw_block();
+	
+	//볼그리기
+	draw_ball();
+}
+
+
+function draw_bar(){
+	
+   ctx.fillStyle = "red"
+   ctx.fillRect(bar.x,bar.y,bar.w,bar.h);
+  
+}
+
+
+function draw_block(){
+	
+	for(var i=0;i< block_array.length;i++){ // i = 0 1 2 3
+		
+		for(var k=0;k<block_array[i].length;k++){ // k = 0 1 2 3 4 5
+			
+			var block = block_array[i][k];
+		    if(block.show==true){//깨지지 않았으면 보여줘라 
+		    	
+		    	//블럭그리기
+		    	ctx.fillStyle = block.color;
+		        ctx.fillRect(block.x-1,block.y-1,block.w-2,block.h-2);
+		    	
+		    }
+			
+		}
+		
+	}
+	
+}
+
+
+function draw_ball(){
+	
+	/* var radgrad = ctx.createRadialGradient(ball_x,ball_y,0,ball_x-5,ball_y-5,ball_radius);   
+	radgrad.addColorStop(0, 'white');     
+	radgrad.addColorStop(1, 'red');   
+	ctx.fillStyle = radgrad;     */
+	//ctx.fillStyle = "red";//그리기(채우기)속성
+	//         x,    y,       r   ,  startAngle,endAngle,회전방향 
+	//                               각도: Radian
+	ctx.beginPath();
+	ctx.arc(ball_x,ball_y,ball_radius,0,Math.PI/180 * 360, true);
+	ctx.fill();
+	
+}
+
+
+function start_stop(){
+	
+	if(timer==null)
+		start_timer();
+	else
+		stop_timer();
+	
+	//버튼캡션 변경
+	document.getElementById("bt_start").value= (timer==null) ? "Start" : "Stop";
+}
+
+function ball_size_plus(){
+	
+	ball_radius += 5;
+	if(ball_radius > 100)ball_radius = 100;
+	
+}
+
+function ball_size_minus(){
+	
+	ball_radius -= 5;
+	if(ball_radius < 10)ball_radius = 10;
+}
+
+</script>
+
+</head>
+<body>
+
+<canvas id="my_canvas" width="600" height="400">
+   이 브라우져는 Canvas가 지원되지 않습니다
+</canvas>
+<hr>
+프로그램 시작/중지 : <input type="button" value="Start" id="bt_start" onclick="start_stop();"><br>
+공의 방향제어버튼  : <input type="button" value="left" 	onclick="bRight=false;">
+                     <input type="button" value="right" onclick="bRight=true;">
+                     <input type="button" value="up" 	onclick="bDown=false;">
+                     <input type="button" value="down" 	onclick="bDown=true;">  
+
+
+                     <br>
+공의 크기제어버튼  :  <input type="button" value="+" onclick="ball_size_plus();">
+                      <input type="button" value="-" onclick="ball_size_minus();">    
+
+
+
+
+
+
+
+
+
+</body>
+</html>

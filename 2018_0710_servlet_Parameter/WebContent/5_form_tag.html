@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+label {
+	color: blue;
+}
+
+input[type='submit'], [type='reset'] {
+	border: 1px solid red;
+	background-color: #5588aa; /*칼라표현법*/
+	color: pink;
+}
+
+input[type='submit']:hover {
+	color: red;
+}
+</style>
+
+
+</head>
+
+<script type="text/javascript">
+function send(f){
+	
+	//클라이언트측에서 1차적으로 전송데이터 유효성 검사 
+	var name = f.name.value;
+	var id   = f.id.value;
+	var pwd = f.pwd.value;
+	
+	
+	if(name==''){
+		alert('이름을 입력하세요');
+		f.name.focus();
+		return;
+	}
+	
+	if(id==''){
+		alert('아이디를 입력하세요');
+		f.id.focus();
+		return;
+	}
+	if(pwd==''){
+		alert('비밀번호를 입력하세요');
+		f.id.focus();
+		return;
+	}
+	
+	
+	
+	
+	//전송객체(url) 참고:submit을 통해 html에서 보내지 않고  자바스크립트상에서 전송경로를 다시 정해줘서 보내는 방법
+	f.action ='member_reg.do;' //MemberRegisterAction Servlet
+	//지정된 action form data 전송 
+	f.submit();
+	
+}
+
+</script>
+
+<body>
+	
+
+	<form action="member_reg.do">
+		<label>이름:</label><input name="name" value="쟝민"><br> 
+		아이디:<input	name="id" value="하핳"><br> 
+		비밀번호:<input type="password" name="pwd" value="1132"><br>
+
+		<!-- radio button 사용시 name명은 동일하게 써줘야 그룹으로 인식된다.  -->
+		성별: <input type="radio" name="sex" value="남자" checked="checked">
+		남자 <input type="radio" name="sex" value="여자"> 여자 <br>
+		<!--  check box :parameter 이름을 동일하게 부여하면 일괄적으로 데이터 처리하기가 수월하다.(배열로 수신) -->
+		취미: <input type="checkbox" name="hobby" value="독서">독서<br>
+		<input type="checkbox" name="hobby" value="낚시">낚시<br> <input
+			type="checkbox" name="hobby" value="영화감상">영화<br> <input
+			type="checkbox" name="hobby" value="게임">게임<br>
+
+		<!--  parameter이름을 동일하게 사용하는 경우  
+		              체크한 항목만 넘어간다.-->
+
+		친구1:<input name="friend"><br> 친구2:<input name="friend"><br>
+		친구3:<input name="friend"><br>
+
+
+		<!-- select : combo box -->
+		혈액형: <select name="blood">
+			<option value="A">A형</option>
+			<option value="B">B형</option>
+			<option value="O">O형</option>
+			<option value="AB">AB형</option>
+		</select> <br>
+
+		<!--  textarea : 여러줄 입력 -->
+		자기소개<br>
+		<textarea name="profile" rows="5" cols="40"></textarea>
+		<br>
+		<!-- 파일전송 -->
+		사진(첨부화일):<input type="file" name="photo"><br>
+		<!-- 선택적으로 지원되는 기능 -->
+		<hr>
+		생년월일 :<input type="date" name="brithday"><br> 배경색상:<input
+			type="color" name="back_color"><br>
+		<hr>
+
+		<hr>
+
+		<input type="button" value="전송하기" onclick="send(this.form);"> 
+		<input type="reset"	value="취소하기">
+
+	</form>
+
+
+
+
+
+</body>
+</html>

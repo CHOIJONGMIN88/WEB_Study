@@ -1,0 +1,253 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<link rel="stylesheet" href="../css/style.css" type="text/css">
+<style>
+
+	*{margin:0;}
+
+ #comment_box{
+ 	width: 600px; 
+ 	
+ 	border: 1px solid red;
+ }
+ #comment_input_box{
+ 	width:100%
+ 
+ }
+ 
+ #comment_input_box>textarea{
+ 
+ 	width:500px;
+ 	height:150px;
+ }
+ 
+ #content{
+  	width:80%;
+  	height:60px;
+ 
+ }
+ 
+ #bt_reg{
+ 	width:20%;
+ 	height:60px;
+ 
+ }
+ 
+</style>
+<script language="JavaScript">
+	function del(f){
+	
+		//var f = document.forms[0];
+		//해당코드는 forms[0]번째가 여러개의 레이아웃을 합칠경우 경우에 따라 맞을수도있고 다를수도 있으므로 위험하다. 따라서 사용하지 않는다.
+		//document.f<---해당방식도 마찬가지다.
+		//보편적으로 많이 사용되는건 this.form 을 사용한다.
+		//<input type="image">를 사용하거나 <button</button>을 사용해야 한다.		
+	//	var idx=f.idx.value;  //해당 idx 값은 오류난다. 이유는 img는 form의 요소가 아니기 때문에 넘어올 수 없다.
+	//	alert(idx);
+		
+		if(confirm('정말 삭제하시겠습니까?')==false)return;
+	
+																																																																																																						
+		f.action='delete.do';
+		f.submit();
+		//location.href사용안됨 이유는 위에 나와있음 자기 ation주소가 없으면 자기신을 호줄하기때문에
+		
+	}
+	
+	function modify(f){
+   
+		
+		f.action='modify_form.do';
+		f.submit();
+	}
+	function reply(idx){
+		
+		
+		location.href='reply_form.do?idx=${param.idx}&page=${param.page}';
+
+    }
+	
+	//댓글쓰기
+	function comment_send(){
+		//로그인이 안되있을 경우 체크 방식
+		if('${empty user}'=='true'){
+			
+			if(confirm('댓글은 로그인하신후에 사용가능합니다.\n로기인 하시겠습니까?')==false)return;
+			//로그인 뒤에 현재 위치로 다시 귀환한다.(세션 트래킹)
+		location.href='../member/login_form.do?url=' + encodeURIComponent(location.href);
+		
+		
+		return;
+		}
+		
+		//댓글쓰기
+		var b_idx ='${vo.idx}';
+		var id = '${user.id}';
+		var name='${user.name}';
+		var content = $('#content').val(); //document.getElementById("content").value
+		if(content==''){
+			alert('댓글 내용을 입력하세요');
+			$('#content').focus();
+			return;		
+		}
+		
+		//Ajax로 전송
+		$.ajax({
+			url:'comment_insert.do',//CommentInsertAcion
+			data:{'b_idx':b_idx,'id':id,'name':name,'content':content},
+			
+			dataType:'json',
+			success:function(data){
+				//
+				if(data.result =='fail'){
+					
+					alert('댓글달기 실패!!');
+					return;					
+				}
+				
+				//이전내용 지우기
+				$('#content').val('');
+				$('#content').focus();
+								
+				comment_list(1);
+				
+			}
+	
+		});
+
+	}
+	//댓글목록 가져오기
+	function comment_list(page){
+		
+		var b_idx='${vo.idx}';
+		
+		$.ajax({
+			url:'comment_list.do',
+			data:{'b_idx':b_idx,'page':page},
+			success:function(data){
+				
+				$('#disp').html(data);		
+			}
+		});
+
+	}
+	
+	$(document).ready(function(){
+	//이 문서가 완료되면 comment_list를 출력해라!!!
+	//id가 #disp인곳에 댓글리스트를 출력하라
+		comment_list(1);
+	});
+	
+	
+	
+</script>
+</HEAD>
+
+<BODY>
+<table width="690" height="50" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td><img src="../img/title_04.gif"></td>
+	</tr>
+</table>
+
+<form>
+	<!-- idx를 숨겨서 서블릿으로 보내주기 위해 사용한다.-->
+	<input type="hidden" name="idx" value="${param.idx}">
+	 <input type="hidden" name="page" value="${param.page}"> 
+	
+<table width="690" border="0" cellspacing="0" cellpadding="0">
+	
+	<tr>
+		<td width="120" height="25" class="td_d">제목</td>
+		<td class="td_d_1">${vo.subject}</td>
+	</tr>
+	<tr>
+		<td width="120" height="25" class="td_d_4">이름</td>
+		<td class="td_d_2">${vo.name}</td>
+	</tr>
+	<tr>
+		<td width="120" height="25" class="td_d_4">날짜</td>
+		<td class="td_d_2">${vo.regdate}</td>
+	</tr>
+	<tr>
+		<td width="120" class="td_d_4">내용</td>
+		<td class="td_d_3" width="570" 
+		style="word-wrap:break-word;word-break:break-all">
+		
+		${vo.content}
+		
+			<pre>pre가 뭐지????</pre>
+		</td>
+	</tr>
+	
+</table>
+
+<table width="690" border="0" cellspacing="0" cellpadding="0">
+	
+	<tr>
+		<td height="5"></td>
+	</tr>
+	<tr>
+		<td>
+		
+		<input type="image" src="../img/btn_list.gif" onclick="location.href='list.do?page=${param.page}'; return false;"  style="cursor:hand">
+		
+<!-- <img src="../img/btn_list.gif" onclick="location.href='list.do'" style="cursor:hand">
+		해당 input타입 이미지는 onclick은 무조건 onsubmit을 호출하게 되있으므로 action을 정해주지 않았으면 자기자신을 계속해서
+		호출한다.그러므로 onsubmit을 제한한다.
+ -->
+		
+		<!--  로그인한 유저에게만 답글 달기 기능을 보여준다. -->
+		<c:if test="${not empty user}">
+		<img src="../img/btn_reply.gif" onClick="reply('${vo.idx}')" style="cursor:hand">
+		</c:if>
+		
+		<!--  글작성자만 수정/삭제 가능 -->
+		<c:if test="${vo.id eq user.id or 1 eq 1}">	
+			<input type="image" src="../img/btn_modify.gif" onClick="modify(this.form); return false; " style="cursor:hand">
+			
+			
+			<input type="image" src='../img/btn_delete.gif' onClick='del(this.form); return false;' style='cursor:hand'>
+		</c:if>
+		
+		</td>
+	</tr>
+</table>
+</form>
+
+<p><br>
+
+
+
+
+
+
+
+<!-- 댓글작성 -->
+<div id="comment_box">
+	<div id="#comment_input_box">
+		<div>작성자:<c:if test="${not empty user}">${user.name}(${user.id})	</c:if>
+		</div>
+		<textarea id="content" rows="" cols=""></textarea>
+		
+		<input id="bt_reg" type="button" value="댓글달기" onclick="comment_send();">
+	</div>
+
+	<!-- 댓글 목록을 출력 -->
+	
+	<div id="disp"> </div>
+
+
+
+</div>
+
+
+
+</BODY>
+</HTML>

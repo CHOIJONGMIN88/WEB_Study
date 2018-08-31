@@ -1,0 +1,23 @@
+package com.ic.aop;
+
+import org.springframework.stereotype.Controller;
+
+import service.TestService;
+
+@Controller
+public class TestController {
+	
+	TestService service;
+
+	public TestService getService() {
+		return service;
+	}
+
+	public void setService(TestService service) {
+		this.service = service;
+	}
+	
+	
+	
+
+}

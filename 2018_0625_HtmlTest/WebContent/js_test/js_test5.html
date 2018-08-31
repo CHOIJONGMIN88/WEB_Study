@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+#disp{
+	width : 300px;
+	height: 400px;
+	background-color: black;
+	color:white; 
+	padding: 20px;
+	font-size:15pt;
+}
+
+</style>
+<script type="text/javascript">
+function gugudan()
+{
+	//alert('계산해줘');
+	//입력된 다의 값을 얻어오기
+	//dan을 입력받기위한 컨트롤의 참조변수 
+	var dan_ctrl = document.getElementById("dan");
+	//dan_ctrl.readOnly=true;
+	var dan = dan_ctrl.value; //값 읽어오기
+	
+	var but = document.getElementById("but");
+	var but_value = but.value;
+	
+	console.log(but.value);
+	var disp_ctrl = document.getElementById("disp");
+	disp_ctrl.innerHTML = but_value; 
+	
+ 	//유효범위 체크(2~9 사이값)
+	
+ 	var reg_ex=/[2-9]{1}/;
+ 	
+ 	if(dan<1||dan>9){
+	//구구단 생성
+	var msg="";
+	
+		//if(dan>1||dan<10){
+		//구구단 생성
+		
+		if(reg_ex.test(dan)==false){
+		alert('2~9사이 값을 입력하세요');
+		
+		dan_ctrl.value='';
+		dan_ctrl.focus();
+		
+		return;
+		}
+}
+	
+	for(var i=1; i<10; i++){
+	msg = msg + (dan + " x " + i + " = " + (dan*i)+"<br>");
+	}
+	var disp_ctrl = document.getElementById("disp");
+	//해당컨트롤에의 Html Text를 넣어준다.
+	disp_ctrl.innerHTML = msg; 
+	}  
+
+</script>
+
+</head>
+<body>
+단: <input id="dan">
+	<input id="but" type="button" value="출력" 
+		   onclick ="javascript:gugudan();">
+	
+<hr>
+
+<div id="disp"> </div>
+
+
+</body>
+</html>

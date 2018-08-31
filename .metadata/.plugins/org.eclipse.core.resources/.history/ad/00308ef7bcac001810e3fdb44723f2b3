@@ -1,0 +1,13 @@
+package service;
+
+import org.springframework.stereotype.Service;
+
+@Service("test_service")
+public class TestServiceImpl implements TestService {
+
+	
+	
+	
+	
+	
+}

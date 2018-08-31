@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+var reg_number=/^[0-9]{0,4}$/;
+
+
+
+function add(){
+	//연산된 결과값을 결과창에 넣기
+	var num1=document.getElementById("su1").value;
+    var num2=document.getElementById("su2").value;
+	//var res = parseInt(su1) + parseInt(su2);
+    
+    
+    if(reg_number.test(num1)==true&&reg_number.test(num2)==true){	
+	document.getElementById("res").value =Number(num1)+Number(num2);
+    
+    }
+    else{
+    alert('1~4자리숫자만 입력하세요');
+    document.getElementById("su1").value='';
+    document.getEIementById("su1").focus();
+    return;
+    }
+
+}
+
+function minus(){
+
+	var num1=document.getElementById("su1").value;
+    var num2=document.getElementById("su2").value;
+	document.getElementById("res").value =Number(num1)-Number(num2);
+	
+}
+
+function multiply(){
+	var num1=document.getElementById("su1").value;
+    var num2=document.getElementById("su2").value;
+	document.getElementById("res").value = Number(num1)*Number(num2);
+	
+}
+
+function divide(){
+	var num1=document.getElementById("su1").value;
+    var num2=document.getElementById("su2").value;
+    document.getElementById("res").value = Number(num1)/Number(num2);
+	
+}
+
+
+
+</script>
+
+
+
+</head>
+<body>
+
+<!-- 
+입력된 2수의 조건(정규식)  
+1.숫자
+2.1~4자리
+-->
+
+
+
+수1:<input id="su1"><br>
+수2:<input id="su2"><br>
+
+<input type="button" value="+" onclick="add()">
+<input type="button" value="-" onclick="minus()">
+<input type="button" value="*" onclick="multiply()">
+<input type="button" value="/" onclick="divide()">
+
+
+<br>
+
+결과 : <input id= "res"><br>
+
+
+</body>
+</html>

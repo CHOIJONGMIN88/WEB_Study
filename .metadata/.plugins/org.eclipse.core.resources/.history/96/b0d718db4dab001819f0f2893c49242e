@@ -1,0 +1,36 @@
+package com.ic.bbs;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import dao.MemberDao;
+import myconst.MyConstant;
+
+public class MemberController {
+
+	MemberDao member_dao;
+
+	
+	public MemberDao getMember_dao() {
+		return member_dao;
+	}
+
+	public void setMember_dao(MemberDao member_dao) {
+		this.member_dao = member_dao;
+	}
+	
+	@RequestMapping("/member/login_form.do")
+	public String login_form() {
+		
+		
+		return MyConstant.MemberController.VIEW_PATH + "member_login_form.jsp";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

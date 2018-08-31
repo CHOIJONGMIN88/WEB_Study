@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+
+*{margin: 0;}
+
+#main_box{
+	width:800px;
+	height: 600px;
+	background-color:#ffd5e2;	
+	margin:auto;
+	
+}
+
+#main_box >h1{
+	
+	font-size:20pt;
+	font-weight:bold;
+	color:#0080c0;
+	text-align: center;
+	margin-top: 10px;
+	
+
+}

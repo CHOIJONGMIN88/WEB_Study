@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;dept_list.jsp&apos; to &apos;WEB-INF&apos;&#x0D;&#x0A;- Original project: &apos;2018_0822_SpringDB&apos;&#x0D;&#x0A;- Destination element: &apos;WEB-INF&apos;&#x0D;&#x0A;- Original element: &apos;dept_list.jsp&apos;" description="Copy file" element1="src/main/webapp/WEB-INF/views/dept/dept_list.jsp" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1535681408053" target="/2018_0831_SpringAutowire/src/main/webapp/WEB-INF" units="0" version="1.0"/>
+</session>
