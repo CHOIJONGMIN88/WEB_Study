@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="visit">
+
+    <!-- 전체검색 -->
+    <select id="visit_list" resultType="visit">
+    	select * from visit order by idx desc	
+    </select>
+    
+    <!-- 조건별검색 -->
+    <select id="visit_condition_list"  parameterType="vo.VisitVo" resultType="visit">
+    	select * from visit 
+    	<trim prefix="where"  prefixOverrides="or">
+    		<if test="name!=null">
+    			name like '%'${ name }'%'
+    		</if>
+    		<if test="content!=null">
+    		    or content like '%'${ content }'%'
+    		</if>
+    	</trim>
+    	order by idx desc	
+    </select>
+    
+    
+    
+    <!-- 게시물 1건 얻어오기  -->
+    <select id="visit_one" parameterType="int"  resultType="visit">
+        select * from visit where idx=#{ idx }
+    </select>
+    
+    <!-- 전체 게시물수 얻어오기 -->
+    <select id="visit_count"  resultType="int">
+    	select count(*) from visit
+    </select>
+  
+    <!-- 방명록 쓰기
+         parameter : 객체(VisitVo)
+         mybatis 변수명은 #{ 객체의속성명  }
+         
+     -->
+    
+    <insert id="visit_insert"   parameterType="vo.VisitVo">
+    	insert into visit(name,content,pwd,ip,regdate) values(
+    	                           #{ name },
+    	                           #{ content },
+    	                           #{ pwd },
+    	                           #{ ip },
+    	                           now())
+    </insert>
+    
+    
+    
+    <delete id="visit_delete" parameterType="int">
+    	delete from visit where idx=#{ idx }
+    </delete>
+    
+    
+    <update id="visit_update" parameterType="vo.VisitVo">
+    	update visit set 
+    	             name=#{ name },
+    	             content=#{ content },
+    	             pwd=#{ pwd },
+    	             ip=#{ ip },
+    	             regdate=sysdate 
+    	where idx=#{ idx }
+    </update>
+    
+	<!-- 게시판 페이징 처리-->
+	<select id="board_condition_list" parameterType="java.util.Map" resultType="board">
+	
+		select*
+	from(
+		select 
+			rank() over(order by ref desc,step asc) no,
+			b.*	,
+			(select count(*) from comment_tb where b_idx=b.idx) c_count
+			
+		from
+			(
+			  select * from board
+			  
+			  <trim prefix="where"  prefixOverrides="or">
+    		<if test="name!=null">
+    			name like concat('%',#{ name },'%')
+    		</if>
+    		<if test="content!=null">
+    		    or content like concat(concat('%', #{ content }),'%')
+    		</if>
+    		
+    		<if test="subject!=null">
+    		    or subject like concat('%',#{ subject },'%')
+    		</if>
+    		
+    		</trim>
+    		order by idx desc	
+			  
+			)b
+		)
+	order by ref desc,step asc
+	limit #{start},#{end}	
+		
+		 
+
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

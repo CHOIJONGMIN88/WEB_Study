@@ -22,7 +22,7 @@ div#header{
 	background-color: #004080;
 	/*부모요소의 크기를 반영 생략시 부모크기*/
 	width:100%;
-	height:100px;
+	height:300px;
 }	
 
 
@@ -32,6 +32,15 @@ div#content{
 	min-height:400px;
 	height:auto;
 }
+
+
+div#content2{
+	
+	background-color: blue;
+	min-height:100px;
+	height:auto;
+}
+
 
 div#aside{
 	

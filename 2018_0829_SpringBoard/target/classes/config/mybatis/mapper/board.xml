@@ -45,6 +45,9 @@
 	
 	</insert>
 	
+
+	
+	
 	
 	<update id="board_update_readhit" parameterType="int">
 	update board set readhit = readhit + 1

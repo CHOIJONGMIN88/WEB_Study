@@ -1,9 +1,0 @@
-package vo;
-
-public class PhotoVo2 {
-
-	String title;
-	
-	
-	
-}

@@ -25,20 +25,20 @@ function gugudan()
 	//dan_ctrl.readOnly=true;
 	var dan = dan_ctrl.value; //값 읽어오기
 	
-	var but = document.getElementById("but");
-	var but_value = but.value;
+//	var but = document.getElementById("but");
+//	var but_value = 'test';
 	
-	console.log(but.value);
-	var disp_ctrl = document.getElementById("disp");
-	disp_ctrl.innerHTML = but_value; 
+//	console.log(but_value);
+//	var disp_ctrl = document.getElementById("disp");
+	//disp_ctrl.innerHTML = but_value; 
 	
  	//유효범위 체크(2~9 사이값)
-	
- 	var reg_ex=/[2-9]{1}/;
- 	
- 	if(dan<1||dan>9){
-	//구구단 생성
 	var msg="";
+ 	//var reg_ex=/[2-9]{1}/;
+ 	
+ 	/* if(dan<1||dan>9){
+	//구구단 생성
+	
 	
 		//if(dan>1||dan<10){
 		//구구단 생성
@@ -50,8 +50,8 @@ function gugudan()
 		dan_ctrl.focus();
 		
 		return;
-		}
-}
+		} 
+}*/
 	
 	for(var i=1; i<10; i++){
 	msg = msg + (dan + " x " + i + " = " + (dan*i)+"<br>");

@@ -16,9 +16,10 @@
 
 	<div id="main_box">
 
-		<div id="header">header
-		<%@ include file = "menu.jsp"%></div>
-		<div id="content">content</div>
+		<div id="header">
+		<%@ include file = "menu.jsp"%>header
+		</div>
+		<div id="content"></div>
 		<div id="footer">footer</div>
 
 	</div>
